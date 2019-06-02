@@ -31,6 +31,7 @@ const ClientSchema = new Schema({
         type: String,
         required: true
       },
+      active: Boolean,
       wishes: String
     }
   ]

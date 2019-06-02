@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 mongoose
   .connect(database, { useNewUrlParser: true })
   .then(() => console.log("mongo connected"))
-  .catch(() => console.log("mongo connection error"));
+  .catch(err => console.log(err));
 
 app.use(passport.initialize());
 require("./config/passport")(passport);
