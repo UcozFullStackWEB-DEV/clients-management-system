@@ -20,6 +20,22 @@ router.get(
   }
 );
 
+//@route  GET api/clients/
+//@desc   Return single client profile
+//@access Public
+
+router.get(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Client.findById(req.params.id)
+      .then(client => {
+        return res.json(client);
+      })
+      .catch(err => res.status(400).json(err));
+  }
+);
+
 //@route  GET api/clients/add-client
 //@desc   Add new client
 //@access Private

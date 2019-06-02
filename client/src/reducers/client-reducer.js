@@ -1,8 +1,15 @@
-import { FETCH_ALL_CLIENTS_SUCCESS, FETCH_ALL_CLIENTS } from "../actions/types";
+import {
+  FETCH_ALL_CLIENTS_SUCCESS,
+  FETCH_ALL_CLIENTS,
+  FETCH_SINGLE_CLIENT,
+  FETCH_SINGLE_CLIENT_SUCCESS
+} from "../actions/types";
 
 const initialState = {
   clients: null,
-  loading: true
+  loading: true,
+  client: null,
+  clientLoading: true
 };
 
 const ClientsReducer = (state = initialState, action) => {
@@ -17,6 +24,17 @@ const ClientsReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         clients: action.payload
+      };
+    case FETCH_SINGLE_CLIENT:
+      return {
+        ...state,
+        clientLoading: true
+      };
+    case FETCH_SINGLE_CLIENT_SUCCESS:
+      return {
+        ...state,
+        client: action.payload,
+        clientLoading: false
       };
     default:
       return state;

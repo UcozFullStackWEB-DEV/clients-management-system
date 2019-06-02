@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function ClientsList({ clients }) {
-  console.log(clients);
   return (
     <div className="main-box no-header clearfix">
       <div className="main-box-body clearfix">

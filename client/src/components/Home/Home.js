@@ -4,14 +4,9 @@ import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
 
 const Home = props => {
-  const {
-    auth,
-    loading,
-    repairer: { username }
-  } = props.repairer;
-  console.log(props);
+  const { auth, repairer } = props.repairer;
 
-  if (loading) {
+  if (auth && !repairer) {
     return <Loader />;
   }
 
@@ -31,7 +26,7 @@ const Home = props => {
             </div>
             <div className="profile-usertitle">
               <div className="profile-usertitle-name text-center">
-                Ви увійшли як: <h2>{username}</h2>
+                Ви увійшли як: <h2>{repairer.username}</h2>
               </div>
               <div className="profile-usertitle-job" />
             </div>
