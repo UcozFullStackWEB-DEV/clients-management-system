@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { fetch_single_client } from "../../actions/client-actions";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import "./ClientProfile.css";
 
@@ -14,7 +14,7 @@ function ClientProfile({ client, clientLoading, fetch_single_client, match }) {
     return <Loader />;
   }
 
-  const { name, surname, phone } = client;
+  const { name, surname, phone, _id } = client;
   return (
     <div className="probootstrap-main js-probootstrap-main col-12">
       <table className="table">
@@ -34,8 +34,13 @@ function ClientProfile({ client, clientLoading, fetch_single_client, match }) {
         </tbody>
       </table>
 
+      <Link className="btn btn-primary mb-4" to={`add-client-order/${_id}`}>
+        Додати ремонт
+      </Link>
+
+      <h2>Список ремонтів</h2>
       {client.orders.map(order => {
-        const { brand, model, description, _id } = order;
+        const { brand, model, description, imei, repairStart, _id } = order;
         return (
           <ul key={_id} className="order-wrap">
             <li>
@@ -45,6 +50,14 @@ function ClientProfile({ client, clientLoading, fetch_single_client, match }) {
             <li>
               <span>Модель:</span>
               {model}
+            </li>
+            <li>
+              <span>imei:</span>
+              {imei}
+            </li>
+            <li>
+              <span>Дата внесення:</span>
+              {repairStart.slice(0, 10)}
             </li>
             <li>
               <span>Опис:</span>

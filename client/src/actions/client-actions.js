@@ -31,3 +31,32 @@ export const fetch_single_client = id => dispatch => {
     })
     .catch(err => console.log(err));
 };
+
+export const add_client = (formData, history) => dispatch => {
+  dispatch({ type: FETCH_SINGLE_CLIENT });
+  axios
+    .post("/api/clients/add-client", formData)
+    .then(newClient => {
+      dispatch({
+        type: FETCH_SINGLE_CLIENT_SUCCESS,
+        payload: newClient.data
+      });
+      history.push(`/clients/${newClient.data._id}`);
+    })
+    .catch(err => console.dir(err));
+};
+
+export const add_client_order = (id, formData, history) => dispatch => {
+  dispatch({ type: FETCH_SINGLE_CLIENT });
+  axios
+    .post(`/api/clients/add-client-order/${id}`, formData)
+    .then(updatedClient => {
+      console.dir(updatedClient);
+      dispatch({
+        type: FETCH_SINGLE_CLIENT_SUCCESS,
+        payload: updatedClient.data
+      });
+      history.push(`/clients/${id}`);
+    })
+    .catch(err => console.log(err));
+};

@@ -2,6 +2,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function ClientsList({ clients }) {
+  if (!clients.length) {
+    return (
+      <div>
+        <h1>Клієнти відсутні </h1>
+      </div>
+    );
+  }
   return (
     <div className="main-box no-header clearfix">
       <div className="main-box-body clearfix">

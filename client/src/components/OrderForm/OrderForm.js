@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { add_client } from "../../actions/client-actions";
+import { add_client_order } from "../../actions/client-actions";
 
-const Main = ({ add_client, history }) => {
+function OrderForm({ add_client_order, match, history }) {
   const [formData, setFormData] = useState({
-    name: "",
     brand: "",
     model: "",
     imei: "",
@@ -16,11 +15,10 @@ const Main = ({ add_client, history }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    add_client(formData, history);
+    add_client_order(match.params.id, formData, history);
   };
 
   const onChange = e => {
-    console.log(e.target.name + " :" + e.target.value);
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -42,44 +40,7 @@ const Main = ({ add_client, history }) => {
           <div className="col-xl-8 col-lg-12">
             <div className="row">
               <div className="col-xl-8 col-lg-12 mx-auto">
-                <h1 className="mb-3">Додати клієнта</h1>
                 <form onSubmit={onSubmit} className="probootstrap-form mb-5">
-                  <div className="row">
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label htmlFor="name">Ім'я</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="name"
-                          name="name"
-                          onChange={onChange}
-                        />
-                      </div>
-                    </div>
-                    <div className="col-md-6">
-                      <div className="form-group">
-                        <label htmlFor="surname">Фамілія</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="surname"
-                          name="surname"
-                          onChange={onChange}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="phone">Номер телефону</label>
-                    <input
-                      type="phone"
-                      className="form-control"
-                      id="phone"
-                      name="phone"
-                      onChange={onChange}
-                    />
-                  </div>
                   <h2>Деталі замовлення</h2>
                   <div className="form-group">
                     <label htmlFor="brand">Бренд</label>
@@ -132,6 +93,7 @@ const Main = ({ add_client, history }) => {
                       onChange={onChange}
                     />
                   </div>
+
                   <div className="form-group">
                     <div>
                       <label htmlFor="date">Введіть дату</label>
@@ -174,17 +136,20 @@ const Main = ({ add_client, history }) => {
       </div>
     </main>
   );
-};
+}
+
 const mapStateToProps = state => {
   return {};
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    add_client: (formData, history) => dispatch(add_client(formData, history))
+    add_client_order: (id, formData, history) =>
+      dispatch(add_client_order(id, formData, history))
   };
 };
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Main);
+)(OrderForm);

@@ -72,7 +72,8 @@ router.post(
         client
           .save()
           .then(updatedClient => {
-            return res.json({ updatedClient });
+            //dont return object inside of res.json({}) :D
+            return res.json(updatedClient);
           })
           .catch(err => res.status(400).json(err));
       })
