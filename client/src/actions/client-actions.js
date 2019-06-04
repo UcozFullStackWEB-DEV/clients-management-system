@@ -3,7 +3,8 @@ import {
   FETCH_ALL_CLIENTS_SUCCESS,
   FETCH_ALL_CLIENTS,
   FETCH_SINGLE_CLIENT,
-  FETCH_SINGLE_CLIENT_SUCCESS
+  FETCH_SINGLE_CLIENT_SUCCESS,
+  CLEAR_ALL_CLIENTS
 } from "../actions/types";
 
 export const fetch_all_clients = () => dispatch => {
@@ -59,4 +60,10 @@ export const add_client_order = (id, formData, history) => dispatch => {
       history.push(`/clients/${id}`);
     })
     .catch(err => console.log(err));
+};
+
+export const clear_all_clients = () => {
+  return {
+    type: CLEAR_ALL_CLIENTS
+  };
 };

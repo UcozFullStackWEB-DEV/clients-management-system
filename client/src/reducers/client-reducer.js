@@ -2,7 +2,8 @@ import {
   FETCH_ALL_CLIENTS_SUCCESS,
   FETCH_ALL_CLIENTS,
   FETCH_SINGLE_CLIENT,
-  FETCH_SINGLE_CLIENT_SUCCESS
+  FETCH_SINGLE_CLIENT_SUCCESS,
+  CLEAR_ALL_CLIENTS
 } from "../actions/types";
 
 const initialState = {
@@ -35,6 +36,14 @@ const ClientsReducer = (state = initialState, action) => {
         ...state,
         client: action.payload,
         clientLoading: false
+      };
+    case CLEAR_ALL_CLIENTS:
+      return {
+        ...state,
+        clients: null,
+        loading: true,
+        client: null,
+        clientLoading: true
       };
     default:
       return state;

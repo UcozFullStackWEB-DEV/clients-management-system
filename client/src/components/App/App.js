@@ -13,6 +13,8 @@ import OrderForm from "../OrderForm/OrderForm";
 import store from "../../store";
 import setAuthToken from "../../utils/setAuthHeaders";
 import { set_repairer } from "../../actions/repairer-actions";
+import { logout_repairer } from "../../actions/repairer-actions";
+import { clear_all_clients } from "../../actions/client-actions";
 import "./App.css";
 import "./animate.css";
 
@@ -22,11 +24,11 @@ if (localStorage.jwtToken) {
   setAuthToken(jwtToken);
   const decodedUser = jwt_decode(jwtToken);
   store.dispatch(set_repairer(decodedUser));
-  // if (decodedUser.exp < Date.now() / 1000) {
-  //   store.dispatch(clearCurrentProfile());
-  //   store.dispatch(logOutUser());
-  //   window.location.href = "/login";
-  // }
+  if (decodedUser.exp < Date.now() / 1000) {
+    store.dispatch(logout_repairer());
+    store.dispatch(clear_all_clients());
+    window.location.href = "/login";
+  }
 }
 
 function App() {
