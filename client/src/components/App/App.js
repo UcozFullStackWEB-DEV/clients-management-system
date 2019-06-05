@@ -10,6 +10,7 @@ import LoginForm from "../LoginForm/LoginForm";
 import RegisterForm from "../RegisterForm/RegisterForm";
 import ClientProfile from "../ClientProfile/ClientProfile";
 import OrderForm from "../OrderForm/OrderForm";
+import EditClientOrder from "../EditClientOrder/EditClientOrder";
 import store from "../../store";
 import setAuthToken from "../../utils/setAuthHeaders";
 import { set_repairer } from "../../actions/repairer-actions";
@@ -41,6 +42,10 @@ function App() {
           <Route path="/register" component={RegisterForm} />
           <Route path="/" component={Home} exact />
           <Route path="/clients/add-client-order/:id" component={OrderForm} />
+          <Route
+            path="/clients/edit-client-order/:client_id/:order_id"
+            component={EditClientOrder}
+          />
           <Route path="/clients/:id" component={ClientProfile} exact />
           <Route path="/clients" component={Clients} exact />
           <Route path="/add-client" component={AddClient} />
