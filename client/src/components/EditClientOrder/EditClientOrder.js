@@ -22,7 +22,6 @@ function OrderForm({
     brand: "",
     model: "",
     imei: "",
-    repairStart: "",
     description: "",
     active: false,
     wishes: ""
@@ -31,12 +30,29 @@ function OrderForm({
   useEffect(() => {
     if (!client) {
       fetch_single_client(match.params.client_id);
+    } else {
+      setFormData(() => {
+        const orderIndex = findCurrentOrder(
+          client.orders,
+          match.params.order_id
+        );
+        return {
+          ...formData,
+          brand: client.orders[orderIndex].brand,
+          model: client.orders[orderIndex].model,
+          imei: client.orders[orderIndex].imei,
+          description: client.orders[orderIndex].description,
+          active: client.orders[orderIndex].active,
+          wishes: client.orders[orderIndex].wishes
+        };
+      });
     }
-  }, [client, match.params.client_id, fetch_single_client]);
-
-  if (clientLoading) {
-    return <Loader />;
-  }
+  }, [
+    client,
+    match.params.client_id,
+    fetch_single_client,
+    match.params.order_id
+  ]);
 
   const onSubmit = e => {
     e.preventDefault();
@@ -50,7 +66,9 @@ function OrderForm({
     });
   };
 
-  const orderIndex = findCurrentOrder(client.orders, match.params.order_id);
+  if (clientLoading) {
+    return <Loader />;
+  }
 
   return (
     <main role="main" className="probootstrap-main js-probootstrap-main">
@@ -141,7 +159,6 @@ function OrderForm({
                     <input
                       className="form-check-input"
                       type="checkbox"
-                      value=""
                       id="active-repair"
                       name="active"
                       onChange={onChange}
