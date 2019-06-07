@@ -38,9 +38,9 @@ function App() {
       <BrowserRouter>
         <div className="App">
           <Aside />
+          <Route path="/" component={Home} exact />
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
-          <Route path="/" component={Home} exact />
           <Route path="/clients/add-client-order/:id" component={OrderForm} />
           <Route
             path="/clients/edit-client-order/:client_id/:order_id"
@@ -54,5 +54,9 @@ function App() {
     </Provider>
   );
 }
+
+console.log(new App());
+console.log(App());
+console.log(<div>Value</div>);
 
 export default App;

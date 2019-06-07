@@ -6,9 +6,10 @@ import { register_repairer } from "../../actions/repairer-actions";
 const RegisterForm = ({ auth, register_repairer, history }) => {
   const [formData, setFormData] = useState({
     email: "",
+    username: "",
     password: "",
-    phone: "",
-    username: ""
+    password2: "",
+    phone: ""
   });
 
   useEffect(() => {
@@ -49,7 +50,23 @@ const RegisterForm = ({ auth, register_repairer, history }) => {
         </div>
       </div>
       <div className="form-group row">
-        <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">
+        <label htmlFor="username" className="col-sm-2 col-form-label">
+          Ім'я користувача
+        </label>
+        <div className="col-sm-6">
+          <input
+            type="text"
+            onChange={onChange}
+            name="username"
+            value={formData.username}
+            className="form-control"
+            id="username"
+            placeholder="ім'я користувача"
+          />
+        </div>
+      </div>
+      <div className="form-group row">
+        <label htmlFor="inputPassword" className="col-sm-2 col-form-label">
           Пароль
         </label>
         <div className="col-sm-6">
@@ -59,8 +76,24 @@ const RegisterForm = ({ auth, register_repairer, history }) => {
             name="password"
             value={formData.password}
             className="form-control"
-            id="inputPassword3"
+            id="inputPassword"
             placeholder="пароль"
+          />
+        </div>
+      </div>
+      <div className="form-group row">
+        <label htmlFor="inputPassword2" className="col-sm-2 col-form-label">
+          Повторіть пароль
+        </label>
+        <div className="col-sm-6">
+          <input
+            type="password"
+            onChange={onChange}
+            name="password2"
+            value={formData.password2}
+            className="form-control"
+            id="inputPassword2"
+            placeholder="повторіть пароль"
           />
         </div>
       </div>
@@ -80,23 +113,6 @@ const RegisterForm = ({ auth, register_repairer, history }) => {
           />
         </div>
       </div>
-      <div className="form-group row">
-        <label htmlFor="username" className="col-sm-2 col-form-label">
-          Пароль
-        </label>
-        <div className="col-sm-6">
-          <input
-            type="text"
-            onChange={onChange}
-            name="username"
-            value={formData.username}
-            className="form-control"
-            id="username"
-            placeholder="ім'я користувача"
-          />
-        </div>
-      </div>
-
       <div className="form-group row">
         <div className="col-sm-10 text-center">
           <button type="submit" className="btn btn-primary">
