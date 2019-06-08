@@ -42,7 +42,7 @@ router.post("/register", (req, res) => {
         return res.status(400).json({ email: "Email already exist" });
       }
 
-      const { email, password, username, phone } = req.body;
+      const { email, password, password2, username, phone } = req.body;
 
       const newRepairer = new Repairer({ email, password, username, phone });
       bcrypt.genSalt(10, function(err, salt) {

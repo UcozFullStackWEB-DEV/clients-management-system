@@ -1,7 +1,7 @@
 const validator = require("validator");
 const isEmpty = require("./isEmpty");
 
-const repairerValidator = ({ email, username, phone, password }) => {
+const repairerValidator = ({ email, username, phone, password, password2 }) => {
   const errors = {};
 
   if (validator.isEmpty(email)) {
@@ -22,6 +22,10 @@ const repairerValidator = ({ email, username, phone, password }) => {
 
   if (validator.isEmpty(password)) {
     errors.password = "password field is required";
+  }
+
+  if (!validator.equals(password, password2)) {
+    errors.password = "Passwords must match";
   }
 
   return {
