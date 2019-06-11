@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { login_repairer } from "../../actions/repairer-actions";
 import "./LoginForm.css";
 
-const LoginForm = ({ auth, login_repairer, history }) => {
+const LoginForm = ({ auth, login_repairer, history, errors }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -44,6 +44,11 @@ const LoginForm = ({ auth, login_repairer, history }) => {
             id="inputEmail3"
             placeholder="Email"
           />
+          {errors && errors.email ? (
+            <div className="alert alert-danger" role="alert">
+              Користувач з вказаним email не існує
+            </div>
+          ) : null}
         </div>
       </div>
       <div className="form-group row">
@@ -60,6 +65,11 @@ const LoginForm = ({ auth, login_repairer, history }) => {
             id="inputPassword3"
             placeholder="Password"
           />
+          {errors && errors.password ? (
+            <div className="alert alert-danger" role="alert">
+              Пароль не коректний
+            </div>
+          ) : null}
         </div>
       </div>
 
@@ -76,7 +86,8 @@ const LoginForm = ({ auth, login_repairer, history }) => {
 
 const mapStateProps = state => {
   return {
-    auth: state.repairer.auth
+    auth: state.repairer.auth,
+    errors: state.repairer.errors
   };
 };
 

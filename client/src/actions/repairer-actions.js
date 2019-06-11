@@ -27,7 +27,7 @@ export const login_repairer = formData => dispatch => {
       setAuthHeaders(token);
     })
     .catch(err => {
-      dispatch({ type: REPAIRER_LOGIN_ERRORS, payload: err });
+      dispatch({ type: REPAIRER_LOGIN_ERRORS, payload: err.response.data });
     });
 };
 

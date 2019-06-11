@@ -19,7 +19,7 @@ const Aside = ({ auth, history, logout_repairer }) => {
           data-animate-effect="fadeInLeft"
         >
           <Link to="/" className="mb-2 d-block probootstrap-logo">
-            <i style={{ fontSize: 34 }} class="fa fa-home" />
+            <i style={{ fontSize: 34 }} className="fa fa-home" />
           </Link>
         </div>
         <div className="probootstrap-overflow">
@@ -56,7 +56,7 @@ const Aside = ({ auth, history, logout_repairer }) => {
         data-animate-effect="fadeInLeft"
       >
         <Link to="/" className="mb-2 d-block probootstrap-logo">
-          <i style={{ fontSize: 34 }} class="fa fa-home" />
+          <i style={{ fontSize: 34 }} className="fa fa-home" />
         </Link>
       </div>
       <div className="probootstrap-overflow">
