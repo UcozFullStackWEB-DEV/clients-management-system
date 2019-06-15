@@ -81,4 +81,47 @@ router.post(
   }
 );
 
+//@route  GET api/clients/edit-client-order/
+//@desc   Add new client
+//@access Private
+
+router.post(
+  "/edit-client-order/:client_id/:order_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Client.findOne({ _id: req.params.client_id })
+      .then(currenTclient => {
+        const orders = currenTclient.orders.map(order => {
+          if (order._id == req.params.order_id) {
+            const { body } = req;
+            const model = body.model || order.model;
+            const brand = body.brand || order.brand;
+            const imei = body.imei || order.imei;
+            const repairStart = body.repairStart || order.repairStart;
+            const description = body.description || order.description;
+            const active = body.active || order.active;
+            const wishes = body.wishes || order.wishes;
+            const updatedOrder = {
+              model,
+              brand,
+              imei,
+              repairStart,
+              description,
+              active,
+              wishes
+            };
+            return updatedOrder;
+          }
+          return order;
+        });
+        currenTclient.orders = orders;
+        currenTclient
+          .save()
+          .then(clientWithUpdatedOrder => res.json(clientWithUpdatedOrder))
+          .catch(err => res.status(404).json(err));
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
 module.exports = router;

@@ -62,6 +62,26 @@ export const add_client_order = (id, formData, history) => dispatch => {
     .catch(err => console.log(err));
 };
 
+export const update_client_order = (
+  clientId,
+  orderId,
+  formData,
+  history
+) => dispatch => {
+  dispatch({ type: FETCH_SINGLE_CLIENT });
+  axios
+    .post(`/api/clients/update-client-order/${clientId}/${orderId}/`, formData)
+    .then(updatedClient => {
+      console.dir(updatedClient);
+      dispatch({
+        type: FETCH_SINGLE_CLIENT_SUCCESS,
+        payload: updatedClient.data
+      });
+      history.push(`/clients/${clientId}`);
+    })
+    .catch(err => console.log(err));
+};
+
 export const clear_all_clients = () => {
   return {
     type: CLEAR_ALL_CLIENTS
