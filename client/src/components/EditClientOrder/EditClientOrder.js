@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Loader from "../Loader/Loader";
 import {
-  add_client_order,
+  edit_client_order,
   fetch_single_client
 } from "../../actions/client-actions";
 
@@ -11,7 +11,7 @@ const findCurrentOrder = (orders, id) => {
 };
 
 function OrderForm({
-  add_client_order,
+  edit_client_order,
   match,
   history,
   client,
@@ -36,6 +36,7 @@ function OrderForm({
           client.orders,
           match.params.order_id
         );
+        if (orderIndex === -1) return formData;
         return {
           ...formData,
           brand: client.orders[orderIndex].brand,
@@ -47,16 +48,12 @@ function OrderForm({
         };
       });
     }
-  }, [
-    client,
-    match.params.client_id,
-    fetch_single_client,
-    match.params.order_id
-  ]);
+  }, [client]);
 
   const onSubmit = e => {
     e.preventDefault();
-    add_client_order(match.params.id, formData, history);
+    const { params } = match;
+    edit_client_order(params.client_id, params.order_id, formData, history);
   };
 
   const onChange = e => {
@@ -197,8 +194,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    add_client_order: (id, formData, history) =>
-      dispatch(add_client_order(id, formData, history)),
+    edit_client_order: (client_id, order_id, formData, history) =>
+      dispatch(edit_client_order(client_id, order_id, formData, history)),
     fetch_single_client: id => dispatch(fetch_single_client(id))
   };
 };

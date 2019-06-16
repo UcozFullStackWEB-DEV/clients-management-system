@@ -62,7 +62,7 @@ export const add_client_order = (id, formData, history) => dispatch => {
     .catch(err => console.log(err));
 };
 
-export const update_client_order = (
+export const edit_client_order = (
   clientId,
   orderId,
   formData,
@@ -70,7 +70,7 @@ export const update_client_order = (
 ) => dispatch => {
   dispatch({ type: FETCH_SINGLE_CLIENT });
   axios
-    .post(`/api/clients/update-client-order/${clientId}/${orderId}/`, formData)
+    .post(`/api/clients/edit-client-order/${clientId}/${orderId}/`, formData)
     .then(updatedClient => {
       console.dir(updatedClient);
       dispatch({

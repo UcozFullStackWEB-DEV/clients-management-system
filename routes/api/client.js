@@ -65,8 +65,9 @@ router.post(
   "/add-client-order/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Client.findOne({ _id: req.params.id })
+    Client.findById(req.params.id)
       .then(client => {
+        console.log(client);
         const order = ({ brand, model, description } = req.body);
         client.orders.unshift(order);
         client
@@ -84,6 +85,18 @@ router.post(
 //@route  GET api/clients/edit-client-order/
 //@desc   Add new client
 //@access Private
+
+router.get(
+  "/find/:client_id/:order_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Client.find({ "orders._id": req.params.order_id })
+      .then(client => {
+        return res.json({ client });
+      })
+      .catch(err => res.status(400).json(err));
+  }
+);
 
 router.post(
   "/edit-client-order/:client_id/:order_id",

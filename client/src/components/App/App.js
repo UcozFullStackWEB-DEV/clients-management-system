@@ -42,11 +42,12 @@ function App() {
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
           <Route path="/clients/add-client-order/:id" component={OrderForm} />
+          <Route path="/clients/:id" component={ClientProfile} exact />
           <Route
             path="/clients/edit-client-order/:client_id/:order_id"
             component={EditClientOrder}
+            exact
           />
-          <Route path="/clients/:id" component={ClientProfile} exact />
           <Route path="/clients" component={Clients} exact />
           <Route path="/add-client" component={AddClient} />
         </div>
@@ -54,9 +55,5 @@ function App() {
     </Provider>
   );
 }
-
-console.log(new App());
-console.log(App());
-console.log(<div>Value</div>);
 
 export default App;
