@@ -1,7 +1,8 @@
 import React from "react";
 import "./ClientOrderList.css";
 import { Link } from "react-router-dom";
-export default function ClientOrdersList({ orders, clientId }) {
+
+export default ({ orders, clientId }) => {
   return (
     <React.Fragment>
       <h2>Список ремонтів</h2>
@@ -38,4 +39,4 @@ export default function ClientOrdersList({ orders, clientId }) {
       })}
     </React.Fragment>
   );
-}
+};

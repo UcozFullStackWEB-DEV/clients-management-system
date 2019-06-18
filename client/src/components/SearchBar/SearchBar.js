@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SearchBar() {
+export default () => {
   return (
     <nav className="navbar navbar-light bg-light">
       <span className="navbar-brand">Навігація</span>
@@ -21,4 +21,4 @@ export default function SearchBar() {
       </form>
     </nav>
   );
-}
+};

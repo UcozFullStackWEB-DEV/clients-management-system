@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function ClientsList({ clients }) {
+export default ({ clients }) => {
   if (!clients.length) {
     return (
       <div>
@@ -61,4 +61,4 @@ export default function ClientsList({ clients }) {
       </div>
     </div>
   );
-}
+};

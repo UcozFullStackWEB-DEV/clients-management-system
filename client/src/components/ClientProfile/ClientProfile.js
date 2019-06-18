@@ -6,7 +6,12 @@ import ClientOrdersList from "../ClientOrdersList/ClientOrderList";
 import Loader from "../Loader/Loader";
 import "./ClientProfile.css";
 
-function ClientProfile({ client, clientLoading, fetch_single_client, match }) {
+const ClientProfile = ({
+  client,
+  clientLoading,
+  fetch_single_client,
+  match
+}) => {
   useEffect(() => {
     fetch_single_client(match.params.id);
   }, [fetch_single_client, match.params.id]);
@@ -41,7 +46,7 @@ function ClientProfile({ client, clientLoading, fetch_single_client, match }) {
       <ClientOrdersList clientId={_id} orders={orders} />
     </div>
   );
-}
+};
 
 const mapStateToProps = state => {
   const { client, clientLoading } = state.client;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { add_client_order } from "../../actions/client-actions";
 
-function OrderForm({ add_client_order, match, history }) {
+const OrderForm = ({ add_client_order, match, history }) => {
   const [formData, setFormData] = useState({
     brand: "",
     model: "",
@@ -136,7 +136,7 @@ function OrderForm({ add_client_order, match, history }) {
       </div>
     </main>
   );
-}
+};
 
 const mapStateToProps = state => {
   return {};

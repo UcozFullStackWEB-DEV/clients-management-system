@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { logout_repairer } from "../../actions/repairer-actions";
 
-const Aside = ({ auth, history, logout_repairer }) => {
+const Aside = ({ auth, logout_repairer }) => {
   if (!auth) {
     return (
       <aside className="probootstrap-aside js-probootstrap-aside">

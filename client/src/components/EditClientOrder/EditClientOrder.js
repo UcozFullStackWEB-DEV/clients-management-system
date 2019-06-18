@@ -10,14 +10,14 @@ const findCurrentOrder = (orders, id) => {
   return orders.map(order => order._id).indexOf(id);
 };
 
-function OrderForm({
+const OrderForm = ({
   edit_client_order,
   match,
   history,
   client,
   clientLoading,
   fetch_single_client
-}) {
+}) => {
   const [formData, setFormData] = useState({
     brand: "",
     model: "",
@@ -182,7 +182,7 @@ function OrderForm({
       </div>
     </main>
   );
-}
+};
 
 const mapStateToProps = state => {
   const { client, clientLoading } = state.client;
