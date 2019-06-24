@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Loader from "../Loader/Loader";
+import { useOrderForm } from "../HOCS/index";
 import {
   edit_client_order,
   fetch_single_client
@@ -18,14 +19,7 @@ const OrderForm = ({
   clientLoading,
   fetch_single_client
 }) => {
-  const [formData, setFormData] = useState({
-    brand: "",
-    model: "",
-    imei: "",
-    description: "",
-    active: false,
-    wishes: ""
-  });
+  const [formData, setFormData] = useOrderForm();
 
   useEffect(() => {
     if (!client) {

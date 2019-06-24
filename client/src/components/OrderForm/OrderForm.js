@@ -1,18 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { add_client_order } from "../../actions/client-actions";
+import { useOrderForm } from "../HOCS/index";
 
 const OrderForm = ({ add_client_order, match, history }) => {
-  const [formData, setFormData] = useState({
-    brand: "",
-    model: "",
-    imei: "",
-    repairStart: "",
-    description: "",
-    active: false,
-    wishes: ""
-  });
-
+  const [formData, setFormData] = useOrderForm();
   const onSubmit = e => {
     e.preventDefault();
     add_client_order(match.params.id, formData, history);
