@@ -22,10 +22,10 @@ export default ({ clients }) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Користувач</TableCell>
-            <TableCell>Ремонти</TableCell>
-            <TableCell>Активні</TableCell>
-            <TableCell>Телефон</TableCell>
+            <TableCell>Клиент</TableCell>
+            <TableCell>Ремонты</TableCell>
+            <TableCell>Активные</TableCell>
+            <TableCell>Номер телефона</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

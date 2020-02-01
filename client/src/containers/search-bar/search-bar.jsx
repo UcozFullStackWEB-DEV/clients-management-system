@@ -23,7 +23,7 @@ const SearchBar = () => {
     <Form
       inputs={inputs}
       formHeader="Поиск по базе клиентов"
-      submitTitle="Найти"
+      submitTitle="Искать"
       submit={onSubmit}
       inputsData={inputsList}
     />

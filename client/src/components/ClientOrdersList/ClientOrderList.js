@@ -49,7 +49,7 @@ export default ({ orders, clientId }) => {
             </ListItem>
             <ListItem>
               <Typography variant="subtitle1" gutterBottom>
-                Дата внесення:
+                Дата добавления:
               </Typography>
               <Typography variant="subtitle1" gutterBottom>
                 {repairStart.slice(0, 10)}

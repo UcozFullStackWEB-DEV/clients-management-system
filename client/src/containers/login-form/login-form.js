@@ -39,6 +39,7 @@ const LoginForm = ({ auth, login_repairer, history, errors }) => {
 
   return (
     <Form
+      errors={errors}
       inputs={inputs}
       inputsData={inputsList}
       submit={onSubmit}

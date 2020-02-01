@@ -26,6 +26,7 @@ const Form = ({
   inputsData,
   inputs,
   submit,
+  errors,
   formHeader = "Заголовок",
   submitTitle = "title"
 }) => {
@@ -44,6 +45,7 @@ const Form = ({
     >
       <h1>{formHeader} </h1>
       <RenderInputs
+        errors={errors}
         inputs={inputs}
         inputsVal={formData}
         setinputVal={setFormData}

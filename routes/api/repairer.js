@@ -77,7 +77,7 @@ router.post("/login", (req, res) => {
 
   Repairer.findOne({ email }).then(repairer => {
     if (!repairer) {
-      return res.status(400).json({ email: "User not found" });
+      return res.status(400).json({ email: "Пользователь не найден" });
     }
     bcrypt.compare(password, repairer.password).then(isEqual => {
       if (isEqual) {
@@ -92,7 +92,7 @@ router.post("/login", (req, res) => {
           });
         });
       } else {
-        return res.status(400).json({ password: "passwords is not equal" });
+        return res.status(400).json({ password: "Пароли не совпадают" });
       }
     });
   });
