@@ -1,23 +1,23 @@
-import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import jwt_decode from "jwt-decode";
-import Aside from "../Aside/Aside";
-import AddClient from "../AddClient/AddClient";
-import Home from "../Home/Home";
-import Clients from "../Clients/Clients";
-import LoginForm from "../LoginForm/LoginForm";
-import RegisterForm from "../RegisterForm/RegisterForm";
-import ClientProfile from "../ClientProfile/ClientProfile";
-import OrderForm from "../OrderForm/OrderForm";
-import EditClientOrder from "../EditClientOrder/EditClientOrder";
+import Aside from "../../containers/navigation/navigation";
+import AddClient from "../../containers/add-client/add-client";
+import Home from "../../containers/home/home";
+import Clients from "../../containers/clients/clients";
+import ClientProfile from "../../containers/client-profile/client-profile";
+import OrderForm from "../../containers/add-client-order/add-client-order";
+import EditClientOrder from "../../containers/edit-order/edit-order";
 import store from "../../store";
 import setAuthToken from "../../utils/setAuthHeaders";
 import { set_repairer } from "../../actions/repairer-actions";
 import { logout_repairer } from "../../actions/repairer-actions";
 import { clear_all_clients } from "../../actions/client-actions";
+import RegisterForm from "../../containers/register-form/register-form";
+import LoginForm from "../../containers/login-form/login-form";
+import MainWrapper from "../UI/main";
 import "./App.css";
-import "./animate.css";
 
 if (localStorage.jwtToken) {
   console.log("user is authenticated");
@@ -26,30 +26,37 @@ if (localStorage.jwtToken) {
   const decodedUser = jwt_decode(jwtToken);
   store.dispatch(set_repairer(decodedUser));
   if (decodedUser.exp < Date.now() / 1000) {
-    store.dispatch(logout_repairer());
     store.dispatch(clear_all_clients());
-    window.location.href = "/login";
+    store.dispatch(logout_repairer);
   }
 }
 
 const App = () => {
+  const [open, setOpen] = useState(false);
   return (
     <Provider store={store}>
       <BrowserRouter>
         <div className="App">
-          <Aside />
-          <Route path="/" component={Home} exact />
-          <Route path="/login" component={LoginForm} />
-          <Route path="/register" component={RegisterForm} />
-          <Route path="/clients/add-client-order/:id" component={OrderForm} />
-          <Route path="/clients/:id" component={ClientProfile} exact />
-          <Route
-            path="/clients/edit-client-order/:client_id/:order_id"
-            component={EditClientOrder}
-            exact
-          />
-          <Route path="/clients" component={Clients} exact />
-          <Route path="/add-client" component={AddClient} />
+          <Aside open={open} setOpen={setOpen} />
+          <Switch>
+            <MainWrapper open={open}>
+              <Route path="/" component={Home} exact />
+              <Route path="/login" component={LoginForm} />
+              <Route path="/register" component={RegisterForm} />
+              <Route
+                path="/clients/add-client-order/:id"
+                component={OrderForm}
+              />
+              <Route path="/clients/:id" component={ClientProfile} exact />
+              <Route
+                path="/clients/edit-client-order/:client_id/:order_id"
+                component={EditClientOrder}
+                exact
+              />
+              <Route path="/clients" component={Clients} exact />
+              <Route path="/add-client" component={AddClient} />
+            </MainWrapper>
+          </Switch>
         </div>
       </BrowserRouter>
     </Provider>

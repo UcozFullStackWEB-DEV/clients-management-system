@@ -5,18 +5,19 @@ const database = require("./config/keys").mongoURL;
 const client = require("./routes/api/client");
 const repairer = require("./routes/api/repairer");
 const passport = require("passport");
+const passportJwtStrategy = require("./config/passport");
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 mongoose
-  .connect(database, { useNewUrlParser: true })
+  .connect(database, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("mongo connected"))
   .catch(err => console.log(err));
 
 app.use(passport.initialize());
-require("./config/passport")(passport);
+passportJwtStrategy(passport);
 
 app.get("/", (req, res) => {
   return res.send("<h1>Hello</h1>");

@@ -3,7 +3,8 @@ import {
   REPAIRER_LOGIN_START,
   REPAIRER_LOGIN_SUCCESS,
   REPAIRER_LOGIN_ERRORS,
-  LOGOUT_REPAIRER
+  LOGOUT_REPAIRER,
+  CLEAR_ALL_CLIENTS
 } from "./types";
 import jwt_decode from "jwt-decode";
 import setAuthHeaders from "../utils/setAuthHeaders";
@@ -43,9 +44,12 @@ export const register_repairer = (formData, history) => dispatch => {
     });
 };
 
-export const logout_repairer = () => {
-  localStorage.removeItem("jwtToken");
-  return {
+export const logout_repairer = dispatch => {
+  dispatch({
     type: LOGOUT_REPAIRER
-  };
+  });
+  dispatch({
+    type: CLEAR_ALL_CLIENTS
+  });
+  localStorage.removeItem("jwtToken");
 };

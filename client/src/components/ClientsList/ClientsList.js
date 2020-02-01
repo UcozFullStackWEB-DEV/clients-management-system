@@ -1,5 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Avatar from "@material-ui/core/Avatar";
+import Link from "@material-ui/core/Link";
+import { Link as RouterLink } from "react-router-dom";
 
 export default ({ clients }) => {
   if (!clients.length) {
@@ -10,55 +18,39 @@ export default ({ clients }) => {
     );
   }
   return (
-    <div className="main-box no-header clearfix">
-      <div className="main-box-body clearfix">
-        <div className="table-responsive">
-          <table className="table user-list">
-            <thead>
-              <tr>
-                <th>
-                  <span>Користувач</span>
-                </th>
-                <th>
-                  <span>Ремонти</span>
-                </th>
-                <th className="text-center">
-                  <span>Активні</span>
-                </th>
-                <th>
-                  <span>Телефон</span>
-                </th>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
-              {clients.map(client => {
-                const { name, surname, phone, _id, orders } = client;
-                return (
-                  <tr key={_id}>
-                    <td>
-                      <img
-                        src="https://bootdey.com/img/Content/user_1.jpg"
-                        alt="img"
-                      />
-                      <Link to={`/clients/${_id}`} className="user-link">
-                        {` ${name} ${surname} `}
-                      </Link>
-                    </td>
-                    <td>{orders.length}</td>
-                    <td className="text-center">
-                      <span className="label label-default">1</span>
-                    </td>
-                    <td>
-                      <span>{phone}</span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <TableContainer>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Користувач</TableCell>
+            <TableCell>Ремонти</TableCell>
+            <TableCell>Активні</TableCell>
+            <TableCell>Телефон</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {clients.map(client => {
+            const { name, surname, phone, _id, orders } = client;
+            return (
+              <TableRow key={_id}>
+                <TableCell>
+                  <Avatar
+                    src="https://bootdey.com/img/Content/user_1.jpg"
+                    alt="img"
+                  />
+                  <Link
+                    component={RouterLink}
+                    to={`/clients/${_id}`}
+                  >{` ${name} ${surname} `}</Link>
+                </TableCell>
+                <TableCell>{orders.length}</TableCell>
+                <TableCell>1</TableCell>
+                <TableCell>{phone}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };

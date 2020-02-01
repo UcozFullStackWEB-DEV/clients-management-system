@@ -1,24 +1,10 @@
 import React from "react";
+import TextField from "@material-ui/core/TextField";
 
 export default () => {
   return (
-    <nav className="navbar navbar-light bg-light">
-      <span className="navbar-brand">Навігація</span>
-      <form className="form-inline">
-        <input
-          className="form-control mr-sm-2"
-          type="search"
-          placeholder="Введіть дані клієнта"
-          aria-label="Search"
-        />
-        <button
-          className="btn btn-outline-success"
-          style={{ padding: "15px 30px" }}
-          type="submit"
-        >
-          Пошук
-        </button>
-      </form>
-    </nav>
+    <form noValidate autoComplete="off">
+      <TextField id="standard-basic" label="Standard" />
+    </form>
   );
 };
