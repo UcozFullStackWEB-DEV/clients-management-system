@@ -1,5 +1,6 @@
 import React from "react";
 import ListItemLink from "./link";
+import PropTypes from "prop-types";
 
 const RenderLinks = ({ links }) => {
   return (
@@ -14,6 +15,10 @@ const RenderLinks = ({ links }) => {
       ))}
     </>
   );
+};
+
+RenderLinks.propTypes = {
+  links: PropTypes.array
 };
 
 export default RenderLinks;

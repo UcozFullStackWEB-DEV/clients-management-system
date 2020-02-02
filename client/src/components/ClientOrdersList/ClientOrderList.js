@@ -6,6 +6,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import EditIcon from "@material-ui/icons/Edit";
 import Typography from "@material-ui/core/Typography";
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles({
   root: {
@@ -14,7 +15,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default ({ orders, clientId }) => {
+const ClientOrderList = ({ orders, clientId }) => {
   const classes = useStyles();
   return (
     <>
@@ -81,3 +82,10 @@ export default ({ orders, clientId }) => {
     </>
   );
 };
+
+ClientOrderList.propTypes = {
+  ClientOrderList: PropTypes.array,
+  clientId: PropTypes.string
+};
+
+export default ClientOrderList;

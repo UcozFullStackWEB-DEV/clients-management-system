@@ -9,12 +9,12 @@ import TableRow from "@material-ui/core/TableRow";
 import ClientOrdersList from "../ClientOrdersList/ClientOrderList";
 import Loader from "../Loader/Loader";
 import AddIcon from "@material-ui/icons/Add";
+import PropTypes from "prop-types";
 
 const ClientProfile = ({ client, clientLoading }) => {
   if (clientLoading) {
     return <Loader />;
   }
-
   const { name, surname, phone, _id, orders } = client;
   return (
     <div className="probootstrap-main js-probootstrap-main col-12">
@@ -50,4 +50,8 @@ const ClientProfile = ({ client, clientLoading }) => {
   );
 };
 
+ClientProfile.propTypes = {
+  client: PropTypes.object,
+  clientLoading: PropTypes.bool
+};
 export default ClientProfile;

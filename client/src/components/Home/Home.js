@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import PropTypes from "prop-types";
 
 const Home = ({ auth, repairer }) => {
   if (auth && !repairer) {
@@ -63,6 +64,11 @@ const Home = ({ auth, repairer }) => {
       )}
     </>
   );
+};
+
+Home.propTypes = {
+  auth: PropTypes.bool,
+  repairer: PropTypes.object
 };
 
 export default Home;

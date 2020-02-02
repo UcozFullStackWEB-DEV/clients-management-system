@@ -8,8 +8,9 @@ import TableRow from "@material-ui/core/TableRow";
 import Avatar from "@material-ui/core/Avatar";
 import Link from "@material-ui/core/Link";
 import { Link as RouterLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export default ({ clients }) => {
+const ClientList = ({ clients }) => {
   if (!clients.length) {
     return (
       <div>
@@ -54,3 +55,9 @@ export default ({ clients }) => {
     </TableContainer>
   );
 };
+
+ClientList.propTypes = {
+  clients: PropTypes.array
+};
+
+export default ClientList;
